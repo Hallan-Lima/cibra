@@ -11,7 +11,7 @@ const UserDetails = () => {
   const searchParams = useSearchParams();
 
   // Obtém o parâmetro 'user' da URL
-  const userParam = searchParams.get('user');
+  const userParam = searchParams ? searchParams.get('user') : null;
   
   // Estado para armazenar os dados do usuário
   const [user, setUser] = useState<User | null>(null);
