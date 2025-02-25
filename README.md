@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Projeto Next.js - Gestão de Usuários (Desafio Cibra)
 
-## Getting Started
+Este projeto foi desenvolvido como parte do desafio técnico de Front-end para a Cibra. A aplicação é uma solução de gestão de usuários que permite visualizar, adicionar, pesquisar e excluir usuários, além de exibir detalhes individuais de cada usuário. Os dados são obtidos de uma API fictícia (JSONPlaceholder) e armazenados no localStorage para melhorar a usabilidade e evitar perda de informações ao navegar entre páginas.
 
-First, run the development server:
+Este é um projeto [Next.js](https://nextjs.org) criado com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Sumário
+
+- [Introdução](#introdução)
+- [Tech Stack](#tech-stack)
+- [Instalação e Execução](#instalação-e-execução)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Funcionalidades](#funcionalidades)
+
+## Introdução
+
+Este projeto é uma aplicação de gestão de usuários que permite visualizar, adicionar, pesquisar e deletar usuários. Os dados dos usuários são buscados de uma API externa e armazenados no `localStorage` do navegador.
+
+## Tech Stack
+
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
+
+- `React`: Biblioteca principal para construção da interface do usuário.
+
+- `Next.js`: Framework para renderização do lado do servidor (SSR) e roteamento.
+
+- `TypeScript`: Adiciona tipagem estática ao JavaScript, melhorando a segurança e a manutenção do código.
+
+- `Tailwind CSS`: Framework CSS utilitário para estilização rápida e responsiva.
+
+- `React Hook Form`: Biblioteca para gerenciamento de formulários com validação eficiente.
+
+- `Radix UI`: Biblioteca de componentes acessíveis e personalizáveis.
+
+- `Yarn`: Gerenciador de pacotes utilizado para instalar e gerenciar dependências.
+
+## Instalação e Execução
+
+Primeiro, clone o repositório para sua máquina local:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/hallan-lima/cibra.git
+cd cibra
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Instale as dependências:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para iniciar o servidor de desenvolvimento, execute:
 
-## Learn More
+```bash
+yarn dev -p 5173
+```
 
-To learn more about Next.js, take a look at the following resources:
+Abra [http://localhost:5173](http://localhost:5173) no seu navegador para ver o resultado.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estrutura do Projeto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A estrutura principal do projeto:
 
-## Deploy on Vercel
+```txt
+/app
+  /page.tsx                 # Página principal que lista e gerencia usuários
+  /users/[id]/page.tsx      # Página de detalhes do usuário
+/types
+  /user.ts                  # Definição do tipo User
+/README.md                  # Documentação do projeto
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Funcionalidades
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Página Principal (`app/page.tsx`)
+
+- **Busca de Usuários**: Usa `useEffect` para buscar usuários da API jsonplaceholder e armazená-los no `localStorage`.
+- **Adicionar Usuário**: Formulário para adicionar um novo usuário à lista.
+- **Pesquisar Usuários**: Campo de busca para filtrar usuários por nome ou email.
+- **Deletar Usuário**: Função para remover um usuário da lista.
+
+### Página de Detalhes do Usuário (`app/users/[id]/page.tsx`)
+
+- **Exibir Detalhes do Usuário**: Mostra os detalhes do usuário selecionado.
+- **Voltar à Lista de Usuários**: Botão para retornar à página principal.
+

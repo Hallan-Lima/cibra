@@ -6,10 +6,17 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
 const UserDetails = () => {
+
+  // Hook para acessar os parâmetros da URL
   const searchParams = useSearchParams();
+
+  // Obtém o parâmetro 'user' da URL
   const userParam = searchParams.get('user');
+  
+  // Estado para armazenar os dados do usuário
   const [user, setUser] = useState<User | null>(null);
 
+  // useEffect para converter o parâmetro 'user' em um objeto User quando o componente é montado
   useEffect(() => {
     if (userParam) {
       // Converte o query parameter de volta para um objeto User
@@ -18,6 +25,7 @@ const UserDetails = () => {
     }
   }, [userParam]);
 
+  // Renderiza um texto de carregamento enquanto os dados do usuário não são carregados
   if (!user) {
     return <div>Carregando...</div>;
   }

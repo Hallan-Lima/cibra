@@ -4,9 +4,16 @@ import { useEffect, useState } from 'react';
 import { User } from '../types/user';
 import Link from 'next/link';
 
+// Componente principal da página Home
 export default function Home() {
+
+  // Estado para armazenar a lista de usuários
   const [users, setUsers] = useState<User[]>([]);
+
+  // Estado para armazenar o termo de pesquisa
   const [searchTerm, setSearchTerm] = useState<string>('');
+  
+  // Estado para armazenar os dados do novo usuário a ser adicionado
   const [newUser, setNewUser] = useState<User>({
     id: 0,
     name: '',
@@ -18,6 +25,7 @@ export default function Home() {
     company: { name: '', catchPhrase: '', bs: '' }
   });
 
+  // useEffect para buscar os usuários da API quando o componente é montado
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -34,36 +42,31 @@ export default function Home() {
     fetchUsers();
   }, []);
 
+  // Função para atualizar o termo de pesquisa
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
+  // Função para deletar um usuário da lista
   const handleDeleteUser = (userId: number) => {
     const updatedUsers = users.filter((user) => user.id !== userId);
     setUsers(updatedUsers);
     localStorage.setItem('users', JSON.stringify(updatedUsers));
   };
 
+  // Função para atualizar os dados do novo usuário a ser adicionado
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewUser({
-      id: 0,
-      name: '',
-      email: '',
-      username: '',
-      address: { street: '', suite: '', city: '', zipcode: '', geo: { lat: '', lng: '' } },
-      phone: '',
-      website: '',
-      company: { name: '', catchPhrase: '', bs: '' }
-    });
     const { name, value } = event.target;
     setNewUser({ ...newUser, [name]: value });
   };
 
+  // Função para adicionar um novo usuário à lista
   const handleAddUser = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const updatedUsers = [...users, { ...newUser, id: users.length + 1 }];
     setUsers(updatedUsers);
     localStorage.setItem('users', JSON.stringify(updatedUsers));
+    // Resetar o estado do novo usuário após adicionar
     setNewUser({
       id: 0,
       name: '',
@@ -76,6 +79,7 @@ export default function Home() {
     });
   };
 
+  // Filtrar usuários com base no termo de pesquisa
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email.toLowerCase().includes(searchTerm.toLowerCase())
