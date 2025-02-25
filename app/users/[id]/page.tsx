@@ -33,6 +33,7 @@ const UserDetails = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Detalhes do Usuário</h1>
+      {user.avatarUrl && <img src={user.avatarUrl} alt={`${user.name}'s avatar`} className="mb-4 w-32 h-32 rounded-full" />}
       <p><strong>Nome:</strong> {user.name}</p>
       <p><strong>Email:</strong> {user.email}</p>
       <p><strong>Telefone:</strong> {user.phone}</p>

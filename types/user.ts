@@ -20,4 +20,5 @@ export interface User {
       catchPhrase: string;
       bs: string;
     };
+    avatarUrl?: string;
   }
